@@ -1,0 +1,7 @@
+presentation\controller\MainController.class
+business\exceptions\WrongRoomIdException.class
+business\ObjectRetriever.class
+business\exceptions\InvalidJsonInputException.class
+service\RetrieveObjectService.class
+business\JsonParser.class
+model\Room.class

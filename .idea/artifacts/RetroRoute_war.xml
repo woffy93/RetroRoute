@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RetroRoute:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>RetroRoute</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="RetroRoute-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="RetroRoute:war exploded" />
+    </root>
+  </artifact>
+</component>

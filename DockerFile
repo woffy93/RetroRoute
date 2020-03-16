@@ -1,0 +1,14 @@
+FROM tomcat:8.5
+MAINTAINER Francesco
+
+RUN cd /usr/local/tomcat/bin  && ./catalina.sh stop  && sed "s/8080/9090/g" < /usr/local/tomcat/conf/server.xml > /tmp/server.xml && cp /tmp/server.xml /usr/local/tomcat/conf/server.xml && printf "stopped tomcat" && ./catalina.sh start
+RUN cd /mnt/ && mkdir RetroRoute && mkdir scripts
+COPY . /mnt/RetroRoute
+COPY scripts/build.sh /mnt/scripts/build.sh
+COPY scripts/run.sh /mnt/scripts/run.sh
+# Fix Windows format
+RUN sed -i -e 's/\r$//' /mnt/scripts/build.sh && sed -i -e 's/\r$//' /mnt/scripts/run.sh
+RUN cd /mnt/ && chmod -R +x /mnt/scripts
+RUN apt-get update && apt-get install -y maven
+RUN cd /mnt/RetroRoute && mvn clean package && cp target/RetroRoute-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 9090
